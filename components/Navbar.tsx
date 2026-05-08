@@ -11,6 +11,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [routeChange, setRouteChange] = useState(false);
 
+  // Check if home page
+  const isHome = pathname === "/";
+
   // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -18,16 +21,17 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Route change animation trigger
+  // Route change effect
   useEffect(() => {
     setRouteChange(true);
 
     const timer = setTimeout(() => {
       setRouteChange(false);
-    }, 300);
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [pathname]);
@@ -44,28 +48,40 @@ export default function Navbar() {
 
   return (
     <>
-      {/* 🔥 TOP LOADER BAR (YouTube style) */}
-      {routeChange && (
-  <div className="fixed top-0 left-0 w-full .h-\[3px\] .z-[999] overflow-hidden">
-    <div className="h-full w-full .bg-gradient-to-r {
-    --tw-gradient-position: to right in oklab;
-    background-image: linear-gradient(var(--tw-gradient-stops));
-} from-blue-500 via-indigo-500 to-purple-500 animate-[loading_0.8s_linear_infinite]"></div>
-  </div>
-)}
+      {/* TOP CONTACT BAR */}
+      <div className="hidden md:flex items-center justify-between bg-blue-950 text-white px-6 md:px-16 py-2 text-sm">
 
+        <div className="flex items-center gap-6">
+          <p>📞 0336-2388766</p>
+          <p>✉ alanasislamicacedmay@gmail.com</p>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <p>Facebook: Al Anas Islamic Academy</p>
+          <p>Instagram: @alanasislamicacedmay</p>
+        </div>
+      </div>
+
+      {/* TOP LOADER */}
+      {routeChange && (
+        <div className="fixed top-0 left-0 w-full h-[3px] z-[9999] overflow-hidden">
+          <div className="h-full w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 animate-pulse"></div>
+        </div>
+      )}
+
+      {/* NAVBAR */}
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
-        ${
-          scrolled || routeChange
-            ? "bg-white/80 backdrop-blur-md shadow-lg py-2"
-            : "bg-transparent py-4"
+        className={`fixed left-0 w-full z-50 transition-all duration-300 ${
+          scrolled || !isHome
+            ? "bg-white shadow-lg py-3 top-0"
+            : "bg-transparent py-4 top-0"
         }`}
       >
         <div className="flex items-center justify-between px-6 md:px-16">
 
           {/* LOGO */}
           <div className="flex items-center gap-3">
+
             <img
               src="/anaslogo.png"
               alt="logo"
@@ -75,8 +91,10 @@ export default function Navbar() {
             />
 
             <h1
-              className={`text-lg md:text-xl font-bold transition-all duration-300 ${
-                scrolled || routeChange ? "text-blue-600" : "text-white"
+              className={`font-bold transition-all duration-300 text-lg md:text-xl ${
+                scrolled || !isHome
+                  ? "text-blue-600"
+                  : "text-white"
               }`}
             >
               Al Anas Islamic Academy
@@ -84,17 +102,17 @@ export default function Navbar() {
           </div>
 
           {/* DESKTOP MENU */}
-          <ul className="hidden md:flex items-center gap-8 font-medium relative">
+          <ul className="hidden md:flex items-center gap-8 font-medium">
 
             {navLinks.map((link, i) => (
               <li key={i} className="relative">
 
                 <Link
                   href={link.path}
-                  className={`transition-colors duration-300 ${
+                  className={`transition duration-300 hover:text-blue-600 ${
                     pathname === link.path
                       ? "text-blue-600 font-semibold"
-                      : scrolled || routeChange
+                      : scrolled || !isHome
                       ? "text-gray-700"
                       : "text-white"
                   }`}
@@ -102,28 +120,32 @@ export default function Navbar() {
                   {link.name}
                 </Link>
 
-                {/* 🔥 ACTIVE SLIDE INDICATOR */}
+                {/* ACTIVE INDICATOR */}
                 {pathname === link.path && (
-                  <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-blue-600 rounded-full animate-pulse"></span>
+                  <span className="absolute left-0 -bottom-2 w-full h-[2px] bg-blue-600 rounded-full"></span>
                 )}
               </li>
             ))}
 
-            {/* REGISTER */}
+            {/* REGISTER BUTTON */}
             <li>
               <Link
                 href="/register"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
               >
                 Register
               </Link>
             </li>
           </ul>
 
-          {/* HAMBURGER */}
+          {/* MOBILE BUTTON */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden flex flex-col gap-[5px] z-50"
+            className={`md:hidden flex flex-col gap-[5px] ${
+              scrolled || !isHome
+                ? "text-black"
+                : "text-white"
+            }`}
           >
             <span
               className={`h-[2px] w-6 bg-current transition-all duration-300 ${
@@ -145,8 +167,9 @@ export default function Navbar() {
 
         {/* MOBILE MENU */}
         <div
-          className={`md:hidden fixed top-0 right-0 h-full w-[70%] bg-white shadow-2xl transition-transform duration-300
-          ${open ? "translate-x-0" : "translate-x-full"}`}
+          className={`md:hidden fixed top-0 right-0 h-full w-[75%] bg-white shadow-2xl transition-transform duration-300 ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
         >
           <div className="flex flex-col mt-24 px-6 gap-6 font-medium">
 
@@ -155,10 +178,10 @@ export default function Navbar() {
                 key={i}
                 href={link.path}
                 onClick={() => setOpen(false)}
-                className={`text-lg ${
+                className={`text-lg transition ${
                   pathname === link.path
                     ? "text-blue-600 font-semibold"
-                    : ""
+                    : "text-gray-700"
                 }`}
               >
                 {link.name}
@@ -168,7 +191,7 @@ export default function Navbar() {
             <Link
               href="/register"
               onClick={() => setOpen(false)}
-              className="bg-blue-600 text-white text-center py-2 rounded-lg mt-4"
+              className="bg-blue-600 text-white text-center py-3 rounded-lg mt-4 hover:bg-blue-700 transition"
             >
               Register
             </Link>
