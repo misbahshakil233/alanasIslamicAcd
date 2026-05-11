@@ -7,6 +7,7 @@ import TrialSection from "@/components/TrialSection";
 import Welcome from "@/components/Welcome";
 import Services from "@/components/Services";
 import Assure from "@/components/Assure";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -17,7 +18,8 @@ export default function Home() {
       <Services />
       <Assure />
       <Courses />
-      <About />
+      <Testimonials />
+      
       
     </main>
   );

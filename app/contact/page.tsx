@@ -1,13 +1,11 @@
+import ContactClient from "./ContactClient";
+
 export const metadata = {
-  title: "Contact",
-  description: "About Al Anas Academy",
+  title: "Contact Us | Al Anas Islamic Academy",
+  description:
+    "Contact Al Anas Islamic Academy for online Quran classes, Tajweed, Hifz, Islamic Studies, and free trial sessions.",
 };
 
 export default function ContactPage() {
-  return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold text-blue-600">Contact Page</h1>
-      <h2 className="text-3xl font-bold text-blue-600">Quran</h2>
-    </div>
-  );
+  return <ContactClient />;
 }

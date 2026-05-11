@@ -1,14 +1,21 @@
+import FaqsClient from "./FaqsClient";
+
 export const metadata = {
-  title: "Faqs",
-  description: "About Al Anas Academy",
+  title: "FAQs | Al Anas Islamic Academy",
+  description:
+    "Find answers to frequently asked questions about online Quran classes, Tajweed, Hifz, female teachers, timings, fees, and free trial classes at Al Anas Islamic Academy.",
+  keywords: [
+    "Online Quran Classes FAQs",
+    "Female Quran Teachers",
+    "Learn Quran Online",
+    "Online Islamic Academy",
+    "Quran Classes for Kids",
+    "Tajweed Classes",
+    "Hifz Quran",
+    "Free Trial Quran Classes",
+  ],
 };
 
 export default function FaqsPage() {
-  return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold text-blue-600">Faqs Page</h1>
-      <h2 className="text-3xl font-bold text-blue-600">Quran</h2>
-      <h2 className="text-3xl font-bold text-blue-600">Qaida</h2>
-    </div>
-  );
+  return <FaqsClient />;
 }
