@@ -41,7 +41,7 @@ export default function LuxuryTestimonials() {
     return () => clearInterval(interval);
   }, []);
 
-  const getIndex = (i) => (i + reviews.length) % reviews.length;
+  const getIndex = (i: number) => (i + reviews.length) % reviews.length;
 
   const visible = [
     reviews[getIndex(index - 1)],
