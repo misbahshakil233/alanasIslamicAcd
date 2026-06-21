@@ -16,10 +16,10 @@ export async function POST(req: Request) {
   }
 
   const token = jwt.sign(
-    { id: admin._id },
-    "secret_key",
-    { expiresIn: "1d" }
-  );
+  { id: admin._id },
+  process.env.JWT_SECRET!,
+  { expiresIn: "1d" }
+);
 
   const res = NextResponse.json({ message: "Login success" });
 
