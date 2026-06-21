@@ -72,7 +72,7 @@ export default function AboutPage() {
             </p>
 
             <h2 className="text-4xl font-bold text-gray-900 mt-4 leading-tight">
-              Hafiza, Aalima & Psychology Educator
+              Hafiz, Aalim & Psychology Educator
             </h2>
 
             <p className="mt-6 text-gray-600 leading-relaxed text-lg">
