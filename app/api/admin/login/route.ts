@@ -1,4 +1,5 @@
 export const runtime = "nodejs";
+
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import dbConnect from "@/lib/dbConnect";
@@ -12,16 +13,21 @@ export async function POST(req: Request) {
   const admin = await Admin.findOne({ email, password });
 
   if (!admin) {
-    return NextResponse.json({ error: "Invalid" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Invalid" },
+      { status: 401 }
+    );
   }
 
   const token = jwt.sign(
-  { id: admin._id },
-  process.env.JWT_SECRET!,
-  { expiresIn: "1d" }
-);
+    { id: admin._id },
+    process.env.JWT_SECRET!,
+    { expiresIn: "1d" }
+  );
 
-  const res = NextResponse.json({ message: "Login success" });
+  const res = NextResponse.json({
+    message: "Login success",
+  });
 
   res.cookies.set("adminToken", token, {
     httpOnly: true,

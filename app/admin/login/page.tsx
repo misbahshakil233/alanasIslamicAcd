@@ -11,76 +11,49 @@ export default function LoginPage() {
   const login = async () => {
     const res = await fetch("/api/admin/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ email, password }),
     });
 
     if (res.ok) {
       router.push("/admin");
     } else {
-      alert("Login failed");
+      alert("Invalid Email or Password");
     }
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <h2 style={styles.title}>Admin Login</h2>
+    <section className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+        <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
+          Admin Login
+        </h2>
 
         <input
-          style={styles.input}
-          placeholder="Email"
+          type="email"
+          placeholder="Enter Email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <input
-          style={styles.input}
-          placeholder="Password"
           type="password"
+          placeholder="Enter Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
-        <button style={styles.button} onClick={login}>
+        <button
+          onClick={login}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition"
+        >
           Login
         </button>
       </div>
-    </div>
+    </section>
   );
 }
-
-const styles = {
-  container: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#f3f4f6",
-  },
-  card: {
-    width: "320px",
-    padding: "20px",
-    borderRadius: "10px",
-    background: "white",
-    boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-  },
-  title: {
-    textAlign: "center",
-    marginBottom: "10px",
-  },
-  input: {
-    padding: "10px",
-    border: "1px solid #ccc",
-    borderRadius: "5px",
-  },
-  button: {
-    padding: "10px",
-    background: "black",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-  },
-};
