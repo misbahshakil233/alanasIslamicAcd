@@ -19,7 +19,10 @@ export default function AboutPage() {
     <section className="bg-gray-50">
 
       {/* HERO SECTION */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24 px-6 md:px-16 text-center">
+      <div className=".bg-gradient-to-r {
+    --tw-gradient-position: to right in oklab;
+    background-image: linear-gradient(var(--tw-gradient-stops));
+} from-blue-900 to-blue-700 text-white py-24 px-6 md:px-16 text-center">
 
         <p className="uppercase tracking-[4px] text-sm text-blue-200">
           About Us
@@ -46,7 +49,9 @@ export default function AboutPage() {
             <img
               src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
               alt="Al Anas Islamic Academy"
-              className="rounded-3xl shadow-2xl w-full h-[600px] object-cover"
+              className="rounded-3xl shadow-2xl w-full .h-\[600px\] {
+    height: 600px;
+} object-cover"
             />
 
             {/* Floating Box */}
@@ -84,7 +89,7 @@ export default function AboutPage() {
             <p className="mt-5 text-gray-600 leading-relaxed text-lg">
               Alongside Islamic education, I also completed 4 years in
               Psychology from Karachi University, helping me better understand
-              students’ learning styles, emotions, and personal development.
+              students "`" learning styles, emotions, and personal development.
             </p>
 
             <p className="mt-5 text-gray-600 leading-relaxed text-lg">

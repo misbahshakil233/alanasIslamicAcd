@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
 
-export default async function dbConnect() {
-  if (mongoose.connection.readyState === 1) return;
+const MONGODB_URI = process.env.MONGODB_URI!;
 
-  await mongoose.connect("mongodb://localhost:27017/yourDB");
+if (!MONGODB_URI) {
+  throw new Error("MONGODB_URI missing");
+}
+
+export default async function dbConnect() {
+  if (mongoose.connection.readyState >= 1) return;
+
+  await mongoose.connect(MONGODB_URI);
 }
