@@ -4,25 +4,26 @@ import Register from "@/models/Register";
 
 export async function POST(req: Request) {
   try {
-    await connectDB();
+  await connectDB();
+  console.log("Database connected successfully");
 
-    const body = await req.json();
+  const body = await req.json();
 
-    const user = await Register.create(body);
+  const user = await Register.create(body);
 
-    return NextResponse.json({
-      success: true,
-      data: user,
-    });
-  } catch (error) {
-    console.log("API ERROR:", error);
+  return NextResponse.json({
+    success: true,
+    data: user,
+  });
+} catch (error) {
+  console.error("FULL ERROR:", error);
 
-    return NextResponse.json(
-      {
-        success: false,
-        message: "Server Error",
-      },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(
+    {
+      success: false,
+      error: String(error),
+    },
+    { status: 500 }
+  );
+}
 }
